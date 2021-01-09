@@ -1,0 +1,111 @@
+:root {
+    --background-color: #2D3142;
+    --text-color: #141414;
+    --content-color: #F5F5F5;
+    --interaction-color: #E5A0B6;
+    --text-color-alt: white;
+}
+ 
+html, body {
+   /* height     : 100%; */
+   margin     : 0;
+   padding    : 0;
+   font-family: "Open Sans";
+   color: var(--text-color);
+   background : var(--background-color);
+}
+ 
+form {
+    padding-top: 3%;
+}
+
+p {
+    font-size: 25px;
+    text-align: center;
+    margin: 1% 5%;
+}
+
+li {
+    font-size: 25px;
+}
+
+strong {
+    font-weight: 900;
+}
+
+.heading:after {
+    content : "";
+
+    display : block;
+    clear   : both;
+}
+  
+
+h1 {
+    /* margin      : 15% 5% 5%; */
+    margin: 5%;
+    font-size   : 60px;
+    font-weight : bold;
+    text-align  : center;
+    color: var(--text-color);
+}
+  
+h2 {
+    font-size: 30px;
+    text-align  : center;
+}
+  
+p.justify {
+    text-align: justify;
+}
+
+.content-container {
+    display: flex;
+    width: auto;
+    max-width: 700px;
+    border-radius: 10px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--content-color);
+    margin: 5% auto;
+    padding-bottom: 2%;
+  }
+
+.button-container {
+    position      : relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* margin-bottom : 100px; */
+}
+
+.about-container {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    font-size: 25px;
+  
+    color: var(--content-color);
+  }
+
+input[type=submit] {
+    background-color: var(--interaction-color); /* Green */
+    border: none;
+    color: var(--text-color-alt);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+  }
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.printit, a.printit:hover, a.printit:hover, a.printit:active {
+    color:var(--interaction-color);
+}

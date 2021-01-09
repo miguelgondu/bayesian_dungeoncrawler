@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="text-align: center;">Instructions</h1>
+
+  <p class="justify">In the first three levels, you will be introduced to the mechanics of the game.</p>
+
+  <p class="justify">Afterwards, you will be presented with an infinite stream of levels. <b>Play as much as you like!</b> When you are done, click Finish Experiment in the top-right corner.</p>
+
+  <p class="justify">Solve these levels as fast as you can!</p>
+  
+  <p class="justify">Unfortunately, this game doesn't work properly on mobile yet. :(</p>
+  <form style="text-align: center;" action="{{ url_for('game') }}">
+    <div class="button-container">
+      <input type="submit" value="Go!">
+    </div>
+  </form>
+{% endblock %}

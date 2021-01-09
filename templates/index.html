@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="text-align: center;">Adaptive roguelike</h1>
+<h2>Play a simple roguelike game, for science!</h2>
+  
+
+  <p class="justify">Come play our game! We are testing systems for adjusting the difficulty of games automatically.</p>
+  
+  <form style="text-align: center;" action="{{ url_for('instructions') }}">
+    <div class="button-container">
+      <input type="submit" value="Go!">
+    </div>
+  </form>
+{% endblock %}

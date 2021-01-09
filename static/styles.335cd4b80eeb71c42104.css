@@ -1,0 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);:root{--background-color:#2d3142;--text-color:#141414;--content-color:#f5f5f5;--interaction-color:#e5a0b6;--text-color-alt:#fff}body,html{margin:0;padding:0;font-family:Open Sans;height:100%;width:100%;overflow:hidden;color:var(--text-color-alt);background:var(--background-color)}canvas{image-rendering:optimizeSpeed;image-rendering:-o-crisp-edges;image-rendering:pixelated;-ms-interpolation-mode:nearest-neighbor}
+
+.heading:after {
+    content : "";
+
+    display : block;
+    clear   : both;
+}
+
+.about-container {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    font-size: 15px
+    color: var(--content-color);
+  }
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.printit, a.printit:hover, a.printit:hover, a.printit:active {
+    color:var(--interaction-color);
+}

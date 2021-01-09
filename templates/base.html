@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Roguelike</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='favicon.ico')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+</head>
+<body>
+    <div class="about-container">
+        <a href="/about">About</a>
+        -
+        <a href="/">Home</a>
+    </div>
+    <div class="content-container">
+        {% block content %} {% endblock %}
+    </div>
+    <!-- <footer class="footer">
+    <a href="/about" target='_blank'>About</a><br/>
+    Frontend taken and adapted from:
+    <a href="https://github.com/underchemist/Flask-sudoku-app" target='_blank'>Flask Sudoku app</a>
+    </footer> -->
+</body>
+</html>
