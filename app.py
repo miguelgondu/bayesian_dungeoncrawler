@@ -25,9 +25,10 @@ def clean_level(level):
     return clean
 
 # Setting up the DB connection
-db = db_connection(os.environ["DATABASE_URL"])
 
 # Creating tables
+goal = int(os.environ["OPTIMIZATION_GOAL"])
+db = db_connection(os.environ["DATABASE_URL"], goal=goal)
 for exp_name in ["bayesian", "random", "baseline"]:
     db.create_playtraces_table(exp_name)
     db.create_trials_table(exp_name)
@@ -58,7 +59,7 @@ def end():
 
 @app.route("/level", methods=["GET", "POST"])
 def level():
-    goal = 10
+    # goal = 10 # replaced by an os environ.
     prior_path = "./static/data/custom_prior_seconds.json"
 
     print("Request: ")
@@ -67,7 +68,7 @@ def level():
     session_id = data["session_id"]
     experiment = data["experiment"]
 
-    all_trials = db.get_all_trials(session_id, experiment)
+    all_trials = db.get_all_trials(experiment, session_id=session_id)
     behaviors = [t["behavior"] for t in all_trials]
     times = [t["time"] for t in all_trials]
     print(f"Fitting with")
@@ -146,15 +147,19 @@ def save_trials():
 
 @app.route("/playtraces", methods=["POST"])
 def save_playtraces():
-    try:
-        data = request.get_json()
-        db.save_playtrace(
-            data["session_id"],
-            data["levels"],
-            data["actions"]
-        )
-    except Exception as e:
-        print(f"Couldn't save data: {type(e)}: {e}")
+    # try:
+    data = request.get_json()
+    print(f"Received a playtrace: {data}")
+    db.save_playtrace(
+        data["session_id"],
+        data["experiment"],
+        data["levels"],
+        data["actions"]
+    )
+    return jsonify({})
+    # except Exception as e:
+    #     print(f"Couldn't save data: {type(e)}: {e}")
+    
 
 if __name__ == "__main__":
     print("Serving the web app")
