@@ -35,7 +35,7 @@ for exp_name in ["bayesian", "random", "baseline"]:
 
 app = Flask(__name__)
 app.secret_key = os.environ["SECRET_KEY"]
-CORS(app)
+# CORS(app)
 
 @app.route("/")
 def index():

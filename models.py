@@ -3,7 +3,6 @@
 ## There are two models:
 ## playtraces: which action was taken at which level: (sessionID, experiment, level, action).
 ## trials: (sessionID, level, behavior, time, won).
-from flask.globals import session
 import psycopg2
 from psycopg2.extras import execute_values
 from itertools import repeat
@@ -85,7 +84,7 @@ class db_connection:
         query = f"SELECT * FROM trials_{exp_name}_goal_{self.goal} "
         query += f" WHERE won={'TRUE' if won else 'FALSE'} "
         if session_id is not None:
-            query += f" AND won=TRUE"
+            query += f" AND session_id='{session_id}'"
 
         c = self.connection.cursor()
         c.execute(query)
@@ -93,7 +92,7 @@ class db_connection:
         trials_sorted = sorted(trials, key=lambda x: x[0])
         # print(trials)
         trials = [
-            {"behavior": t[3], "time": t[4]} for t in trials_sorted
+            {"session_id": t[1], "behavior": t[3], "time": t[4]} for t in trials_sorted
         ]
 
         return trials

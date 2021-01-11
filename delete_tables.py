@@ -4,18 +4,18 @@ def print_all_tables(db):
     cursor = db.cursor()
     cursor.execute("""SELECT table_name FROM information_schema.tables
         WHERE table_schema = 'public'""")
-    for table in cursor.fetchall():
-        print(table)
-
-
+    return cursor.fetchall()
 
 db = psycopg2.connect("postgresql://localhost:5432/migd")
 print("Before")
-print_all_tables(db)
+all_tables = print_all_tables(db)
 
-c = db.cursor()
-c.execute("DROP TABLE IF EXISTS trials_bayesian, playtraces_bayesian, trials_random, playtraces_random, trials_baseline, playtraces_baseline;")
-db.commit()
+for table, in all_tables:
+    print(f"Dropping {table}. Click to continue.")
+    input()
+    c = db.cursor()
+    c.execute(f"DROP TABLE IF EXISTS {table};")
+    db.commit()
 
 print("After")
 print_all_tables(db)
