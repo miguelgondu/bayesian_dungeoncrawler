@@ -1,4 +1,9 @@
 import psycopg2
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ModuleNotFoundError:
+    print("Couldn't load the local .env file.")
 
 def print_all_tables(db):
     cursor = db.cursor()
