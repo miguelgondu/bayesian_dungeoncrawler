@@ -25,7 +25,6 @@ def clean_level(level):
     return clean
 
 # Setting up the DB connection
-
 # Creating tables
 db_name = "HEROKU_POSTGRESQL_OLIVE"
 goal = int(os.environ["OPTIMIZATION_GOAL"])

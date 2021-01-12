@@ -55,10 +55,6 @@ class db_connection:
         execute_values(
             cursor, insert_query, all_tuples
         )
-        # try:
-        #     cursor.execute(f"INSERT INTO playtraces_{exp_name}_goal_{self.goal} VALUES " + args_str)
-        # except Exception as e:
-        #     print(f"Couldn't save playtrace: got error {e} ({type(e)})")
 
     def get_all_ids(self, exp_name):
         # Gets all (unique) session_ids from the trials table.

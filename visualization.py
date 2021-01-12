@@ -1,12 +1,20 @@
+import os
 import matplotlib.pyplot as plt
-from models import db_connection
 import numpy as np
 from zelda_experiment import ZeldaExperiment
 from scipy.spatial import cKDTree
 from sklearn.preprocessing import MinMaxScaler
 
-DATABASE_URL = "postgresql://localhost:5432/migd"
-goal = 10
+from models import db_connection
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ModuleNotFoundError:
+    print("Couldn't load the local .env file.")
+
+DATABASE_URL = os.environ["DATABASE_URL"]
+goal = os.environ["OPTIMIZATION_GOAL"]
 prior_path = "./static/data/human_prior.json"
 
 def get_all_ids(exp_name):

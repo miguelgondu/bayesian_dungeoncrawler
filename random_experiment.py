@@ -23,5 +23,6 @@ class RandomExperiment:
         self.levels = ze.prior["level"]
     
     def next_level(self):
+        # Randomly sample a level.
         x_new = level_from_text(self.levels.sample().values[0])
         return x_new

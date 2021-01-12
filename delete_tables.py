@@ -1,4 +1,5 @@
 import psycopg2
+import os
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -11,7 +12,8 @@ def print_all_tables(db):
         WHERE table_schema = 'public'""")
     return cursor.fetchall()
 
-db = psycopg2.connect("postgresql://localhost:5432/migd")
+DATABASE_URL = os.environ["DATABASE_URL"]
+db = psycopg2.connect(DATABASE_URL)
 print("Before")
 all_tables = print_all_tables(db)
 
