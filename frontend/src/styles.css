@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+:root {
+    --background-color: #2D3142;
+    --text-color: #141414;
+    --content-color: #F5F5F5;
+    --interaction-color: #E5A0B6;
+    --text-color-alt: white;
+}
+ 
+
+html, body {
+    margin     : 0;
+    padding    : 0;
+    font-family: "Open Sans";
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    color: var(--text-color-alt);
+    background : var(--background-color);
+}
+
+canvas {
+    image-rendering: optimizeSpeed;             
+    image-rendering: -moz-crisp-edges;          
+    image-rendering: -webkit-optimize-contrast; 
+    image-rendering: -o-crisp-edges;            
+    image-rendering: pixelated;                 
+    -ms-interpolation-mode: nearest-neighbor;   
+  }

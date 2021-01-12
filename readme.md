@@ -31,4 +31,21 @@ This project was built in Python 3.7. Install all Python dependencies by running
 pip install -r requirements.txt
 ```
 
+### Running it.
+
+After installing these requirements, you can run the app:
+
+```
+python app.py
+```
+
+## The game.
+
+The logic of the game itself is in the `frontend` folder. This is an angular app that is then compiled into the `static` folder. Standing in `frontend`:
+
+```
+ng build --prod --build-optimizer --baseHref="/static/"
+```
+
+and then copy the contents of `dist` to `static`, and update `./templates/game.html`'s `main` script to the new hash.
 

@@ -1,0 +1,22 @@
+div.message {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    font-size: 25px;
+}
+
+div.canvasContainer {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 100%;
+    width: 100%;
+}
+
+div.game {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 100%;
+    width: 100%;
+}
