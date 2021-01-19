@@ -27,6 +27,7 @@ def clean_level(level):
 # Setting up the DB connection
 # Creating tables
 db_name = "HEROKU_POSTGRESQL_OLIVE"
+# db_name = "DATABASE"
 goal = int(os.environ["OPTIMIZATION_GOAL"])
 db = db_connection(os.environ[f"{db_name}_URL"], goal=goal)
 for exp_name in ["bayesian", "random", "baseline"]:

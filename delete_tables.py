@@ -12,18 +12,22 @@ def print_all_tables(db):
         WHERE table_schema = 'public'""")
     return cursor.fetchall()
 
-DATABASE_URL = os.environ["DATABASE_URL"]
-db = psycopg2.connect(DATABASE_URL)
-print("Before")
-all_tables = print_all_tables(db)
+# DATABASE_URL_1 = os.environ["DATABASE_URL"]
+# DATABASE_URL_2 = os.environ["HEROKU_POSTGRESQL_OLIVE_URL"]
+# db1 = psycopg2.connect(DATABASE_URL_1)
+# db2 = psycopg2.connect(DATABASE_URL_2)
+# # print("Before")
+# for url, db in zip([DATABASE_URL_1, DATABASE_URL_2], [db1, db2]):
+#     print(f"PROCESSING TABLES IN {url}")
+#     all_tables = print_all_tables(db)
+#     for table, in all_tables:
+#         if "bayesian" in table and "playtraces" not in table:
+#             print(f"Dropping {table}. Click to continue.")
+#             input()
+#             c = db.cursor()
+#             c.execute(f"DROP TABLE IF EXISTS {table};")
+#             db.commit()
 
-for table, in all_tables:
-    print(f"Dropping {table}. Click to continue.")
-    input()
-    c = db.cursor()
-    c.execute(f"DROP TABLE IF EXISTS {table};")
-    db.commit()
-
-print("After")
-print_all_tables(db)
+#     print("After")
+#     print(print_all_tables(db))
 

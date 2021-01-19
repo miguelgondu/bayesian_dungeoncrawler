@@ -1,3 +1,7 @@
+"""
+Check the one in data analysis. It's updated to 
+saving ALL the tables.
+"""
 import json
 
 from models import db_connection
