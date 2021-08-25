@@ -12,22 +12,25 @@ from utils.map_elites import compute_features
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv()
 except ModuleNotFoundError:
     print("Couldn't load the local .env file.")
+
 
 def clean_level(level):
     clean = []
     for row in level:
         clean_row = ["1" if s in ["2", "3"] else s for s in row]
         clean.append(clean_row)
-    
+
     return clean
+
 
 # Setting up the DB connection
 # Creating tables
-db_name = "HEROKU_POSTGRESQL_OLIVE"
-# db_name = "DATABASE"
+# db_name = "HEROKU_POSTGRESQL_OLIVE"
+db_name = "DATABASE"
 goal = int(os.environ["OPTIMIZATION_GOAL"])
 db = db_connection(os.environ[f"{db_name}_URL"], goal=goal)
 for exp_name in ["bayesian", "random", "baseline"]:
@@ -38,25 +41,31 @@ app = Flask(__name__)
 app.secret_key = os.environ["SECRET_KEY"]
 # CORS(app)
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/instructions")
 def instructions():
     return render_template("instructions.html")
 
+
 @app.route("/game")
 def game():
     return render_template("game.html")
+
 
 @app.route("/about")
 def about():
     return render_template("about.html")
 
+
 @app.route("/end")
 def end():
     return render_template("end.html")
+
 
 @app.route("/level", methods=["GET", "POST"])
 def level():
@@ -96,7 +105,7 @@ def level():
             behaviors=behaviors,
             times=times,
             projection=["leniency", "reachability"],
-            model_parameters=None
+            model_parameters=None,
         )
         next_level = exp.next_level()
     else:
@@ -106,61 +115,59 @@ def level():
             behaviors=behaviors,
             times=times,
             projection=["leniency", "reachability"],
-            model_parameters=None
+            model_parameters=None,
         )
         print(f"Running bayesian with goal {goal}")
         next_level = exp.next_level()
         print("Defaulting to Bayesian")
 
     behaviors = compute_features(next_level)
-    next_behavior = [
-        behaviors["leniency"],
-        behaviors["reachability"]
-    ]
+    next_behavior = [behaviors["leniency"], behaviors["reachability"]]
     next_level = clean_level(next_level)
     print(f"Next level: {next_level}")
     print(f"Beh: {next_behavior}")
 
-    document = {
-        "next_level": next_level,
-        "behavior": next_behavior
-    }
+    document = {"next_level": next_level, "behavior": next_behavior}
     return jsonify(document)
+
 
 @app.route("/trials", methods=["POST"])
 def save_trials():
-    try:
-        data = request.get_json()
-        print("Saving trial: ")
-        print(data)
-        db.save_trial(
-            data["session_id"],
-            data["exp_name"],
-            data["level"],
-            data["behavior"],
-            data["time"],
-            data["won"]
-        )
-    except Exception as e:
-        print(f"Couldn't save data: {type(e)}: {e}")
-    finally:
-        return jsonify({})
+    # try:
+    #     data = request.get_json()
+    #     print("Saving trial: ")
+    #     print(data)
+    #     db.save_trial(
+    #         data["session_id"],
+    #         data["exp_name"],
+    #         data["level"],
+    #         data["behavior"],
+    #         data["time"],
+    #         data["won"]
+    #     )
+    # except Exception as e:
+    #     print(f"Couldn't save data: {type(e)}: {e}")
+    # finally:
+    #     return jsonify({})
+
+    return jsonify({})
+
 
 @app.route("/playtraces", methods=["POST"])
 def save_playtraces():
     # try:
-    data = request.get_json()
-    print(f"Received a playtrace: {data}")
-    db.save_playtrace(
-        data["session_id"],
-        data["experiment"],
-        data["levels"],
-        data["actions"]
-    )
+    # data = request.get_json()
+    # print(f"Received a playtrace: {data}")
+    # db.save_playtrace(
+    #     data["session_id"],
+    #     data["experiment"],
+    #     data["levels"],
+    #     data["actions"]
+    # )
     return jsonify({})
     # except Exception as e:
     #     print(f"Couldn't save data: {type(e)}: {e}")
-    
+
 
 if __name__ == "__main__":
     print("Serving the web app")
