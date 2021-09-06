@@ -1,11 +1,11 @@
-# Roguelike web app
+# Bayesian Roguelike
+
+This web app was used in the second experiment of the paper [*Fast Game Content Adaptation Through Bayesian-based Player Modelling*](https://arxiv.org/abs/2105.08484), which was presented at CoG2021.
 
 This web app tests three systems for dynamic difficulty adjustment:
 - Serving levels completely at random (see `random_experiment.py`).
 - Serving levels with noisy hill-climbing (see `baseline_experiment.py`), and
 - Serving levels using Bayesian Optimization with a Gaussian Process model and UCB as an acquisition function (see `zelda_experiment.py`).
-
-If you want to know more about our research, [read our paper](https://arxiv.org/abs/2005.07677) (which tests the Bayesian Optimization approach on planning agents).
 
 ## Running this webapp
 
@@ -47,5 +47,5 @@ The logic of the game itself is in the `frontend` folder. This is an angular app
 ng build --prod --build-optimizer --baseHref="/static/"
 ```
 
-and then copy the contents of `dist` to `static`, and update `./templates/game.html`'s `main` script to the new hash.
+and then copy the contents of `dist` to `static`, and update `./templates/game.html`'s `main` script to the new hash. Sorry.
 
