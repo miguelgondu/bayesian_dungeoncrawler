@@ -133,24 +133,22 @@ def level():
 
 @app.route("/trials", methods=["POST"])
 def save_trials():
-    # try:
-    #     data = request.get_json()
-    #     print("Saving trial: ")
-    #     print(data)
-    #     db.save_trial(
-    #         data["session_id"],
-    #         data["exp_name"],
-    #         data["level"],
-    #         data["behavior"],
-    #         data["time"],
-    #         data["won"]
-    #     )
-    # except Exception as e:
-    #     print(f"Couldn't save data: {type(e)}: {e}")
-    # finally:
-    #     return jsonify({})
-
-    return jsonify({})
+    try:
+        data = request.get_json()
+        print("Saving trial: ")
+        print(data)
+        db.save_trial(
+            data["session_id"],
+            data["exp_name"],
+            data["level"],
+            data["behavior"],
+            data["time"],
+            data["won"],
+        )
+    except Exception as e:
+        print(f"Couldn't save data: {type(e)}: {e}")
+    finally:
+        return jsonify({})
 
 
 @app.route("/playtraces", methods=["POST"])
