@@ -1,4 +1,4 @@
-# Bayesian Roguelike
+# Bayesian Dungeon Crawler
 
 This web app was used in the second experiment of the paper [*Fast Game Content Adaptation Through Bayesian-based Player Modelling*](https://arxiv.org/abs/2105.08484), which was presented at CoG2021.
 
